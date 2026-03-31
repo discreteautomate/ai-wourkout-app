@@ -22,7 +22,9 @@ equipment = st.selectbox(
 )
 
 days = st.slider("Number of days", 1, 7, 3)
+
 st.caption("Tip: Click regenerate to explore different workout variations.")
+
 if st.button("Generate Workout") or st.button("Regenerate 🔄"):
     with st.spinner("Generating your workout plan..."):
         result = generate_workout(goal, experience, equipment, days)
@@ -34,6 +36,9 @@ if st.button("Generate Workout") or st.button("Regenerate 🔄"):
         st.success("Your workout plan is ready.")
         st.subheader("Your Workout Plan")
 
-        for day, plan in result.items():
+        for day, details in result.items():
             st.markdown(f"### {day.upper()}")
-            st.write(plan)
+            st.write(f"**Warmup:** {details['warmup']}")
+            st.write(f"**Main workout:** {details['main_workout']}")
+            st.write(f"**Finisher:** {details['finisher']}")
+            st.write(f"**Note:** {details['note']}")
