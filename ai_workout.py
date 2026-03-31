@@ -21,7 +21,17 @@ Input:
 - Experience: {experience}
 - Equipment: {equipment}
 
-Return ONLY valid JSON where the keys are day1, day2, ..., up to the requested number of days.
+Return ONLY valid JSON.
+
+Each day must be an object with this structure:
+{{
+  "warmup": "",
+  "main_workout": "",
+  "finisher": "",
+  "note": ""
+}}
+
+Use keys day1, day2, ..., up to the requested number of days.
 """
 
     response = client.chat.completions.create(
@@ -36,14 +46,22 @@ Return ONLY valid JSON where the keys are day1, day2, ..., up to the requested n
     try:
         data = json.loads(output)
 
-        expected_keys = [f"day{i}" for i in range(1, days + 1)]
+        expected_day_keys = [f"day{i}" for i in range(1, days + 1)]
+        expected_section_keys = ["warmup", "main_workout", "finisher", "note"]
 
-        for key in expected_keys:
-            if key not in data or not data[key]:
+        for day_key in expected_day_keys:
+            if day_key not in data or not isinstance(data[day_key], dict):
                 return {
                     "error": "Invalid structure from AI",
                     "raw_output": data
                 }
+
+            for section_key in expected_section_keys:
+                if section_key not in data[day_key] or not data[day_key][section_key]:
+                    return {
+                        "error": "Invalid structure from AI",
+                        "raw_output": data
+                    }
 
         return data
 
