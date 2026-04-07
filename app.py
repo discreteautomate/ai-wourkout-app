@@ -29,18 +29,15 @@ if st.button("Generate Workout") or st.button("Regenerate 🔄"):
     with st.spinner("Generating your workout plan..."):
         result = generate_workout(goal, experience, equipment, days)
 
-   if "error" in result:
-    st.error("The workout plan could not be generated correctly.")
-else:
-    st.success("Your workout plan is ready.")
-    st.subheader("Your Workout Plan")
+    if "error" in result:
+        st.error("The workout plan could not be generated correctly. Please try again.")
+    else:
+        st.success("Your workout plan is ready.")
+        st.subheader("Your Workout Plan")
 
-    for day, details in result.items():
-        st.markdown(f"### {day.upper()}")
-        st.write(f"**Warmup:** {details['warmup']}")
-        st.write(f"**Main workout:** {details['main_workout']}")
-        st.write(f"**Finisher:** {details['finisher']}")
-        st.write(f"**Note:** {details['note']}")
-        st.write(f"**Main workout:** {details['main_workout']}")
-        st.write(f"**Finisher:** {details['finisher']}")
-        st.write(f"**Note:** {details['note']}")
+        for day, details in result.items():
+            st.markdown(f"### {day.upper()}")
+            st.write(f"**Warmup:** {details['warmup']}")
+            st.write(f"**Main workout:** {details['main_workout']}")
+            st.write(f"**Finisher:** {details['finisher']}")
+            st.write(f"**Note:** {details['note']}")
