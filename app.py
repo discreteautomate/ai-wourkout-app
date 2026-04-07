@@ -45,3 +45,6 @@ if st.button("Generate Workout") or st.button("Regenerate 🔄"):
             st.write(f"**Main workout:** {details['main_workout']}")
             st.write(f"**Finisher:** {details['finisher']}")
             st.write(f"**Note:** {details['note']}")
+            st.write(f"**Main workout:** {details['main_workout']}")
+            st.write(f"**Finisher:** {details['finisher']}")
+            st.write(f"**Note:** {details['note']}")
