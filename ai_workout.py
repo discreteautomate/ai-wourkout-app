@@ -22,8 +22,12 @@ Input:
 - Equipment: {equipment}
 
 Return ONLY valid JSON.
+Do not include any explanation, extra text, markdown, or code fences.
 
-Each day must be an object with this structure:
+The response must be a single JSON object.
+Use keys day1, day2, ..., up to the requested number of days.
+
+Each day must be an object with exactly these keys:
 {{
   "warmup": "",
   "main_workout": "",
@@ -31,7 +35,10 @@ Each day must be an object with this structure:
   "note": ""
 }}
 
-Use keys day1, day2, ..., up to the requested number of days.
+Make sure the JSON is syntactically valid:
+- use double quotes for all keys and values
+- include commas between all fields
+- do not repeat the JSON object
 """
 
     response = client.chat.completions.create(
@@ -53,14 +60,14 @@ Use keys day1, day2, ..., up to the requested number of days.
             if day_key not in data or not isinstance(data[day_key], dict):
                 return {
                     "error": "Invalid structure from AI",
-                    "raw_output": data
+                    "raw_output": output
                 }
 
             for section_key in expected_section_keys:
                 if section_key not in data[day_key] or not data[day_key][section_key]:
                     return {
                         "error": "Invalid structure from AI",
-                        "raw_output": data
+                        "raw_output": output
                     }
 
         return data
