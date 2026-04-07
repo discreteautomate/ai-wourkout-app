@@ -1,5 +1,4 @@
 import streamlit as st
-st.write("VERSION TEST 123")
 from ai_workout import generate_workout
 
 st.set_page_config(page_title="AI Workout Generator", page_icon="💪")
