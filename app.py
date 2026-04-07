@@ -29,8 +29,6 @@ if st.button("Generate Workout") or st.button("Regenerate 🔄"):
     with st.spinner("Generating your workout plan..."):
         result = generate_workout(goal, experience, equipment, days)
 
-    st.write(result)
-
     if "error" in result:
     st.error("The workout plan could not be generated correctly.")
     st.write("Debug result:")
