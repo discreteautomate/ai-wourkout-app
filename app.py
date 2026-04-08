@@ -45,7 +45,7 @@ regenerate_clicked = st.button("Regenerate 🔄")
 
 if generate_clicked or regenerate_clicked:
     with st.spinner("Generating your workout plan..."):
-        result = generate_workout(goal, experience, equipment, days)
+        result = generate_workout(goal, experience, equipment, days, duration, focus_area, limitations)
 
     if "error" in result:
         st.error("The workout plan could not be generated correctly. Please try again.")
