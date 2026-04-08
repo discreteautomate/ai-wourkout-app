@@ -37,6 +37,9 @@ Generate a {days}-day workout plan for this user:
 - Goal: {goal}
 - Experience: {experience}
 - Equipment: {equipment}
+- Duration: {duration} minutes
+- Focus area: {focus_area}
+- Limitations: {limitations}
 
 Keep each day practical and realistic for the user's level and equipment.
 """
