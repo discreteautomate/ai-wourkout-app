@@ -21,6 +21,21 @@ equipment = st.selectbox(
     ["bodyweight", "gym", "dumbbells"]
 )
 
+duration = st.selectbox(
+    "Select exercise duration",
+    ["20 min", "30 min", "45 min", "60 min"]
+)
+
+focus area = st.selectbox(
+    "Focus on",
+    ["full body", "upper body", "lower body", "core"]
+)
+
+limitation = st.selectbox(
+    "Issue",
+    ["none", "shoulder ache", "back pain", "stiff neck"]
+)
+
 days = st.slider("Number of days", 1, 7, 3)
 
 st.caption("Tip: Click regenerate to explore different workout variations.")
