@@ -4,6 +4,9 @@ Input:
 - Goal: fat loss
 - Experience: beginner
 - Equipment: bodyweight
+- Duration: minutes
+- Focus area: core
+- Limitations: stiff neck
 
 Output:
 {
