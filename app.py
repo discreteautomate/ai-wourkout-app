@@ -25,7 +25,10 @@ days = st.slider("Number of days", 1, 7, 3)
 
 st.caption("Tip: Click regenerate to explore different workout variations.")
 
-if st.button("Generate Workout") or st.button("Regenerate 🔄"):
+generate_clicked = st.button("Generate Workout")
+regenerate_clicked = st.button("Regenerate 🔄")
+
+if generate_clicked or regenerate_clicked:
     with st.spinner("Generating your workout plan..."):
         result = generate_workout(goal, experience, equipment, days)
 
