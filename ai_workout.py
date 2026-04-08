@@ -41,7 +41,7 @@ Generate a {days}-day workout plan for this user:
 - Focus area: {focus_area}
 - Limitations: {limitations}
 
-Keep each day practical and realistic for the user's level and equipment.
+Keep each day practical and realistic for the user's level, available time, equipment, focus area, and limitations.
 """
 
     response = client.chat.completions.create(
