@@ -3,7 +3,7 @@ from openai import OpenAI
 
 client = OpenAI()
 
-def generate_workout(goal, experience, equipment, duration, focus area, limitations, days):
+def generate_workout(goal, experience, equipment, days, duration, focus_area, limitations):
     schema = {
         "name": "workout_plan",
         "schema": {
