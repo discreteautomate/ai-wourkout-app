@@ -4,7 +4,7 @@ Input:
 - Goal: fat loss
 - Experience: beginner
 - Equipment: bodyweight
-- Duration: minutes
+- Duration: 30 minutes
 - Focus area: core
 - Limitations: stiff neck
 
@@ -35,6 +35,9 @@ Input:
 - Goal: muscle gain
 - Experience: intermediate
 - Equipment: gym
+- Duration: 20 minutes
+- Focus area: core
+- Limitations: stiff neck
 
 Output:
 {
