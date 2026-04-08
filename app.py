@@ -21,31 +21,44 @@ equipment = st.selectbox(
     ["bodyweight", "gym", "dumbbells"]
 )
 
+days = st.slider("Number of days", 1, 7, 3)
+
 duration = st.selectbox(
-    "Select exercise duration",
-    ["20 min", "30 min", "45 min", "60 min"]
+    "Workout duration (minutes)",
+    [20, 30, 45, 60]
 )
 
-focus area = st.selectbox(
-    "Focus on",
+focus_area = st.selectbox(
+    "Focus area",
     ["full body", "upper body", "lower body", "core"]
 )
 
-limitation = st.selectbox(
-    "Issue",
-    ["none", "shoulder ache", "back pain", "stiff neck"]
+limitations = st.text_input(
+    "Limitations or injuries",
+    value="none"
 )
-
-days = st.slider("Number of days", 1, 7, 3)
 
 st.caption("Tip: Click regenerate to explore different workout variations.")
 
-generate_clicked = st.button("Generate Workout")
-regenerate_clicked = st.button("Regenerate 🔄")
+col1, col2 = st.columns(2)
+
+with col1:
+    generate_clicked = st.button("Generate Workout")
+
+with col2:
+    regenerate_clicked = st.button("Regenerate 🔄")
 
 if generate_clicked or regenerate_clicked:
     with st.spinner("Generating your workout plan..."):
-        result = generate_workout(goal, experience, equipment, days, duration, focus_area, limitations)
+        result = generate_workout(
+            goal,
+            experience,
+            equipment,
+            days,
+            duration,
+            focus_area,
+            limitations
+        )
 
     if "error" in result:
         st.error("The workout plan could not be generated correctly. Please try again.")
