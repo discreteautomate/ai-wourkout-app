@@ -43,7 +43,11 @@ limitations = st.text_input(
 
 st.caption("Tip: Click regenerate to explore different workout variations.")
 
-col1, col2, col3 = st.columns(3)
+generate_clicked = st.button("Generate Workout")
+
+regenerate_clicked = st.button("Regenerate 🔄")
+
+clear_clicked = st.button("Clear Workout")
 
 with col1:
     generate_clicked = st.button("Generate Workout")
