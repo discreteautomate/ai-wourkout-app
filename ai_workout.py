@@ -32,7 +32,10 @@ def generate_workout(goal, experience, equipment, days, duration, focus_area, li
     prompt = f"""
 You are a workout plan generator.
 
-Generate a {days}-day workout plan for this user:
+Generate a workout plan for exactly {days} days.
+
+You must return exactly these keys:
+{", ".join([f"day{i}" for i in range(1, days + 1)])}
 
 - Goal: {goal}
 - Experience: {experience}
