@@ -43,13 +43,19 @@ limitations = st.text_input(
 
 st.caption("Tip: Click regenerate to explore different workout variations.")
 
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 
 with col1:
     generate_clicked = st.button("Generate Workout")
 
 with col2:
     regenerate_clicked = st.button("Regenerate 🔄")
+
+with col3:
+    clear_clicked = st.button("Clear Workout")
+
+if clear_clicked:
+    st.session_state.workout_result = None
 
 if generate_clicked or regenerate_clicked:
     with st.spinner("Generating your workout plan..."):
