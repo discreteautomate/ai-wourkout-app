@@ -29,7 +29,7 @@ def generate_workout(goal, experience, equipment, days, duration, focus_area, li
         }
     }
 
-    prompt = f"""
+prompt = f"""
 You are a workout plan generator.
 
 Generate a workout plan for exactly {days} days.
