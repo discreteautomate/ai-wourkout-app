@@ -29,13 +29,15 @@ def generate_workout(goal, experience, equipment, days, duration, focus_area, li
         }
     }
 
-prompt = f"""
+    prompt = f"""
 You are a workout plan generator.
 
 Generate a workout plan for exactly {days} days.
 
 You must return exactly these keys:
 {", ".join([f"day{i}" for i in range(1, days + 1)])}
+
+Generate the workout plan for this user:
 
 - Goal: {goal}
 - Experience: {experience}
@@ -62,32 +64,29 @@ Keep each day practical and realistic for the user's level, available time, equi
     output = response.choices[0].message.content
 
     try:
-    data = json.loads(output)
+        data = json.loads(output)
 
-    expected_day_keys = [f"day{i}" for i in range(1, days + 1)]
-    expected_section_keys = ["warmup", "main_workout", "finisher", "note"]
+        expected_day_keys = [f"day{i}" for i in range(1, days + 1)]
+        expected_section_keys = ["warmup", "main_workout", "finisher", "note"]
 
-    for day_key in expected_day_keys:
-        if day_key not in data or not isinstance(data[day_key], dict):
-            return {
-                "error": "Invalid structure from AI",
-                "raw_output": output
-            }
-
-        for section_key in expected_section_keys:
-            if section_key not in data[day_key] or not data[day_key][section_key]:
+        for day_key in expected_day_keys:
+            if day_key not in data or not isinstance(data[day_key], dict):
                 return {
                     "error": "Invalid structure from AI",
                     "raw_output": output
                 }
 
-    return data
+            for section_key in expected_section_keys:
+                if section_key not in data[day_key] or not data[day_key][section_key]:
+                    return {
+                        "error": "Invalid structure from AI",
+                        "raw_output": output
+                    }
 
-except json.JSONDecodeError:
-    return {
-        "error": "Invalid JSON from AI",
-        "raw_output": output
-    }
+        return data
+
+    except json.JSONDecodeError:
+        return {
             "error": "Invalid JSON from AI",
             "raw_output": output
         }
