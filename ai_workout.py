@@ -62,9 +62,32 @@ Keep each day practical and realistic for the user's level, available time, equi
     output = response.choices[0].message.content
 
     try:
-        return json.loads(output)
-    except json.JSONDecodeError:
-        return {
+    data = json.loads(output)
+
+    expected_day_keys = [f"day{i}" for i in range(1, days + 1)]
+    expected_section_keys = ["warmup", "main_workout", "finisher", "note"]
+
+    for day_key in expected_day_keys:
+        if day_key not in data or not isinstance(data[day_key], dict):
+            return {
+                "error": "Invalid structure from AI",
+                "raw_output": output
+            }
+
+        for section_key in expected_section_keys:
+            if section_key not in data[day_key] or not data[day_key][section_key]:
+                return {
+                    "error": "Invalid structure from AI",
+                    "raw_output": output
+                }
+
+    return data
+
+except json.JSONDecodeError:
+    return {
+        "error": "Invalid JSON from AI",
+        "raw_output": output
+    }
             "error": "Invalid JSON from AI",
             "raw_output": output
         }
