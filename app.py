@@ -3,6 +3,9 @@ from ai_workout import generate_workout
 
 st.set_page_config(page_title="AI Workout Generator", page_icon="💪")
 
+if "workout_result" not in st.session_state:
+    st.session_state.workout_result = None
+
 st.title("AI Workout Generator 💪")
 st.write("Create a personalized workout plan in seconds.")
 
@@ -59,6 +62,11 @@ if generate_clicked or regenerate_clicked:
             focus_area,
             limitations
         )
+
+    st.session_state.workout_result = result
+
+if st.session_state.workout_result is not None:
+    result = st.session_state.workout_result
 
     if "error" in result:
         st.error("The workout plan could not be generated correctly. Please try again.")
