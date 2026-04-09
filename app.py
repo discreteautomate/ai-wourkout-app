@@ -44,19 +44,8 @@ limitations = st.text_input(
 st.caption("Tip: Click regenerate to explore different workout variations.")
 
 generate_clicked = st.button("Generate Workout")
-
 regenerate_clicked = st.button("Regenerate 🔄")
-
 clear_clicked = st.button("Clear Workout")
-
-with col1:
-    generate_clicked = st.button("Generate Workout")
-
-with col2:
-    regenerate_clicked = st.button("Regenerate 🔄")
-
-with col3:
-    clear_clicked = st.button("Clear Workout")
 
 if clear_clicked:
     st.session_state.workout_result = None
@@ -87,8 +76,10 @@ if st.session_state.workout_result is not None:
         for day, details in result.items():
             st.markdown(f"### {day.upper()}")
             st.write(f"**Warmup:** {details['warmup']}")
+            st.write(f"**Main workout:** {details['main_workout']}")
+            st.write(f"**Finisher:** {details['finisher']}")
+            st.write(f"**Note:** {details['note']}")
 
-            if st.session_state.workout_result is not None:
     st.divider()
     st.subheader("Quick Feedback")
 
@@ -107,6 +98,3 @@ if st.session_state.workout_result is not None:
             "useful": useful,
             "feedback": feedback_text
         })
-            st.write(f"**Main workout:** {details['main_workout']}")
-            st.write(f"**Finisher:** {details['finisher']}")
-            st.write(f"**Note:** {details['note']}")
