@@ -87,6 +87,26 @@ if st.session_state.workout_result is not None:
         for day, details in result.items():
             st.markdown(f"### {day.upper()}")
             st.write(f"**Warmup:** {details['warmup']}")
+
+            if st.session_state.workout_result is not None:
+    st.divider()
+    st.subheader("Quick Feedback")
+
+    useful = st.radio(
+        "Was this workout useful?",
+        ["Yes", "No"]
+    )
+
+    feedback_text = st.text_input(
+        "Anything you'd improve? (optional)"
+    )
+
+    if st.button("Submit Feedback"):
+        st.success("Thanks for your feedback!")
+        st.write({
+            "useful": useful,
+            "feedback": feedback_text
+        })
             st.write(f"**Main workout:** {details['main_workout']}")
             st.write(f"**Finisher:** {details['finisher']}")
             st.write(f"**Note:** {details['note']}")
