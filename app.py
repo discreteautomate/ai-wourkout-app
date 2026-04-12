@@ -103,8 +103,35 @@ if st.session_state.workout_result is not None:
     )
 
     if st.button("Submit Feedback"):
-        st.success("Thanks for your feedback!")
-        st.write({
-            "useful": useful,
-            "feedback": feedback_text
-        })
+    file_exists = os.path.isfile("feedback.csv")
+
+    with open("feedback.csv", mode="a", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+
+        # Write header only once
+        if not file_exists:
+            writer.writerow([
+                "goal",
+                "experience",
+                "equipment",
+                "days",
+                "duration",
+                "focus_area",
+                "limitations",
+                "useful",
+                "feedback"
+            ])
+
+        writer.writerow([
+            goal,
+            experience,
+            equipment,
+            days,
+            duration,
+            focus_area,
+            limitations,
+            useful,
+            feedback_text
+        ])
+
+    st.success("Feedback saved. Thank you 🙌")
