@@ -103,7 +103,7 @@ if st.session_state.workout_result is not None:
     )
 
     if st.button("Submit Feedback"):
-    file_exists = os.path.isfile("feedback.csv")
+        file_exists = os.path.isfile("feedback.csv")
 
     with open("feedback.csv", mode="a", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
