@@ -6,6 +6,7 @@ EXERCISE_IMAGES = {
     "squats": "https://via.placeholder.com/150?text=Squats",
     "plank": "https://via.placeholder.com/150?text=Plank",
     "lunges": "https://via.placeholder.com/150?text=Lunges"
+}
 
 client = OpenAI()
 
@@ -18,7 +19,7 @@ def attach_images(data):
                 if exercise in text.lower():
                     day["image"] = url
 
-    data = attach_images(data)
+
     return data
 
 def generate_workout(goal, experience, equipment, days, duration, focus_area, limitations, exclude):
@@ -102,6 +103,7 @@ Keep each day practical and realistic for the user's level, available time, equi
                         "raw_output": output
                     }
 
+        data = attach_images(data)
         return data
 
     except json.JSONDecodeError:
