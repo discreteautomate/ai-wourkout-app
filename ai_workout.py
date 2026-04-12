@@ -1,7 +1,24 @@
 import json
 from openai import OpenAI
 
+EXERCISE_IMAGES = {
+    "push-ups": "https://via.placeholder.com/150?text=Push-ups",
+    "squats": "https://via.placeholder.com/150?text=Squats",
+    "plank": "https://via.placeholder.com/150?text=Plank",
+    "lunges": "https://via.placeholder.com/150?text=Lunges"
+
 client = OpenAI()
+
+def attach_images(data):
+    for day in data.values():
+        if isinstance(day, dict):
+            text = str(day)
+
+            for exercise, url in EXERCISE_IMAGES.items():
+                if exercise in text.lower():
+                    day["image"] = url
+
+    return data
 
 def generate_workout(goal, experience, equipment, days, duration, focus_area, limitations, exclude):
     schema = {
