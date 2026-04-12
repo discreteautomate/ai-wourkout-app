@@ -13,12 +13,11 @@ client = OpenAI()
 def attach_images(data):
     for day in data.values():
         if isinstance(day, dict):
-            text = str(day)
+            text = str(day).lower()
 
             for exercise, url in EXERCISE_IMAGES.items():
-                if exercise in text.lower():
+                if exercise in text:
                     day["image"] = url
-
 
     return data
 
@@ -64,7 +63,7 @@ Generate the workout plan for this user:
 - Duration: {duration} minutes
 - Focus area: {focus_area}
 - Limitations: {limitations}
-- Exclude {exclude}
+- Exclude: {exclude}
 
 Keep each day practical and realistic for the user's level, available time, equipment, focus area, and limitations.
 """
