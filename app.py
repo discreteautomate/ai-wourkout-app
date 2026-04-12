@@ -73,12 +73,22 @@ if st.session_state.workout_result is not None:
         st.success("Your workout plan is ready.")
         st.subheader("Your Workout Plan")
 
-        for day, details in result.items():
-            st.markdown(f"### {day.upper()}")
-            st.write(f"**Warmup:** {details['warmup']}")
-            st.write(f"**Main workout:** {details['main_workout']}")
-            st.write(f"**Finisher:** {details['finisher']}")
-            st.write(f"**Note:** {details['note']}")
+    for day, details in result.items():
+        st.markdown(f"### {day.upper()}")
+
+        st.write("**Warmup:**")
+        for item in details["warmup"].split(", "):
+            st.markdown(f"- {item}")
+
+        st.write("**Main workout:**")
+        for item in details["main_workout"].split(", "):
+            st.markdown(f"- {item}")
+
+        st.write("**Finisher:**")
+        for item in details["finisher"].split(", "):
+            st.markdown(f"- {item}")
+
+    st.write(f"**Note:** {details['note']}")
 
     st.divider()
     st.subheader("Quick Feedback")
