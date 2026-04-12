@@ -63,7 +63,7 @@ Generate the workout plan for this user:
 - Duration: {duration} minutes
 - Focus area: {focus_area}
 - Limitations: {limitations}
-- Exclude: {exclude}
+- Exclude these exercises: {", ".join(exclude) if exclude else "none"}
 
 Keep each day practical and realistic for the user's level, available time, equipment, focus area, and limitations.
 """
