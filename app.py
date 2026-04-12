@@ -97,6 +97,9 @@ if st.session_state.workout_result is not None:
                 st.markdown(f"- {item}")
 
             st.write(f"**Note:** {details['note']}")
+            
+            if "image" in details:
+                st.image(details["image"], width=200)
 
     st.divider()
     st.subheader("Quick Feedback")
@@ -141,4 +144,4 @@ if st.session_state.workout_result is not None:
                 feedback_text
             ])
 
-    st.success("Feedback saved. Thank you 🙌")
+        st.success("Feedback saved. Thank you 🙌")
