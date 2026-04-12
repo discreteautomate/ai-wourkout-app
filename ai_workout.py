@@ -2,8 +2,8 @@ import json
 from openai import OpenAI
 
 EXERCISE_IMAGES = {
-    "push-ups": "https://via.placeholder.com/150?text=Push-ups",
-    "squats": "https://via.placeholder.com/150?text=Squats",
+    "push-ups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Push-up%20start%20and%20end%20positions.png",
+    "squats": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Squat%20exercise%20progression%20illustration.png",
     "plank": "https://via.placeholder.com/150?text=Plank",
     "lunges": "https://via.placeholder.com/150?text=Lunges"
 }
