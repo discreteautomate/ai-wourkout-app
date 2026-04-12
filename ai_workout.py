@@ -18,6 +18,7 @@ def attach_images(data):
                 if exercise in text.lower():
                     day["image"] = url
 
+    data = attach_images(data)
     return data
 
 def generate_workout(goal, experience, equipment, days, duration, focus_area, limitations, exclude):
