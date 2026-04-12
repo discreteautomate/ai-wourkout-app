@@ -1,5 +1,7 @@
 import streamlit as st
 from ai_workout import generate_workout
+import csv
+import os
 
 st.set_page_config(page_title="AI Workout Generator", page_icon="💪")
 
