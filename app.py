@@ -43,6 +43,11 @@ limitations = st.text_input(
     value="none"
 )
 
+exclude = st.multiselect(
+    "Exclude exercises",
+    ["plank", "burpees", "squats", "lunges", "push-ups"]
+)
+
 st.caption("Tip: Click regenerate to explore different workout variations.")
 
 generate_clicked = st.button("Generate Workout")
@@ -61,7 +66,8 @@ if generate_clicked or regenerate_clicked:
             days,
             duration,
             focus_area,
-            limitations
+            limitations,
+            exclude
         )
 
     st.session_state.workout_result = result
@@ -107,33 +113,32 @@ if st.session_state.workout_result is not None:
     if st.button("Submit Feedback"):
         file_exists = os.path.isfile("feedback.csv")
 
-    with open("feedback.csv", mode="a", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
+        with open("feedback.csv", mode="a", newline="", encoding="utf-8") as file:
+            writer = csv.writer(file)
 
-        # Write header only once
-        if not file_exists:
+            if not file_exists:
+                writer.writerow([
+                    "goal",
+                    "experience",
+                    "equipment",
+                    "days",
+                    "duration",
+                    "focus_area",
+                    "limitations",
+                    "useful",
+                    "feedback"
+                ])
+
             writer.writerow([
-                "goal",
-                "experience",
-                "equipment",
-                "days",
-                "duration",
-                "focus_area",
-                "limitations",
-                "useful",
-                "feedback"
+                goal,
+                experience,
+                equipment,
+                days,
+                duration,
+                focus_area,
+                limitations,
+                useful,
+                feedback_text
             ])
-
-        writer.writerow([
-            goal,
-            experience,
-            equipment,
-            days,
-            duration,
-            focus_area,
-            limitations,
-            useful,
-            feedback_text
-        ])
 
     st.success("Feedback saved. Thank you 🙌")
