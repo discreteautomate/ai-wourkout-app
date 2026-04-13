@@ -4,6 +4,16 @@ import csv
 import os
 import json
 from datetime import datetime
+from ai_workout import generate_workout, EXERCISE_IMAGES
+
+def find_exercise_image(exercise_text):
+    exercise_text = exercise_text.lower()
+
+    for exercise_name, image_url in EXERCISE_IMAGES.items():
+        if exercise_name in exercise_text:
+            return exercise_name, image_url
+
+    return None, None
 
 st.set_page_config(page_title="AI Workout Generator", page_icon="💪")
 
@@ -214,22 +224,30 @@ if st.session_state.workout_result is not None:
             for item in details["warmup"].split(", "):
                 st.markdown(f"- {item}")
 
+                exercise_name, image_url = find_exercise_image(item)
+                if image_url:
+                    st.image(image_url, width=220)
+                    st.caption(exercise_name.title())
+
             st.write("**Main workout:**")
             for item in details["main_workout"].split(", "):
                 st.markdown(f"- {item}")
+
+                exercise_name, image_url = find_exercise_image(item)
+                if image_url:
+                    st.image(image_url, width=220)
+                    st.caption(exercise_name.title())
 
             st.write("**Finisher:**")
             for item in details["finisher"].split(", "):
                 st.markdown(f"- {item}")
 
+                exercise_name, image_url = find_exercise_image(item)
+                if image_url:
+                    st.image(image_url, width=220)
+                    st.caption(exercise_name.title())
+
             st.write(f"**Note:** {details['note']}")
-
-            if "image" in details:
-                st.image(details["image"], width=220)
-
-        st.divider()
-
-        download_col1, download_col2 = st.columns(2)
 
         with download_col1:
             st.download_button(
