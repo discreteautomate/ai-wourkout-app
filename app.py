@@ -1,5 +1,4 @@
 import streamlit as st
-from ai_workout import generate_workout
 import csv
 import os
 import json
@@ -249,23 +248,27 @@ if st.session_state.workout_result is not None:
 
             st.write(f"**Note:** {details['note']}")
 
-        with download_col1:
-            st.download_button(
-                label="Download Current Plan as JSON",
-                data=json.dumps(result, indent=2, ensure_ascii=False),
-                file_name="workout_plan.json",
-                mime="application/json",
-                use_container_width=True
-            )
+            st.divider()
 
-        with download_col2:
-            st.download_button(
-                label="Download Current Plan as TXT",
-                data=format_plan_as_text(result),
-                file_name="workout_plan.txt",
-                mime="text/plain",
-                use_container_width=True
-            )
+            download_col1, download_col2 = st.columns(2)
+
+            with download_col1:
+                st.download_button(
+                    label="Download Current Plan as JSON",
+                    data=json.dumps(result, indent=2, ensure_ascii=False),
+                    file_name="workout_plan.json",
+                    mime="application/json",
+                    use_container_width=True
+                )
+
+            with download_col2:
+                st.download_button(
+                    label="Download Current Plan as TXT",
+                    data=format_plan_as_text(result),
+                    file_name="workout_plan.txt",
+                    mime="text/plain",
+                    use_container_width=True
+                ))
 
 if user_id:
     saved_plans = get_user_plans(user_id)
