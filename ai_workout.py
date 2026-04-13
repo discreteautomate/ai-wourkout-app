@@ -5,24 +5,39 @@ EXERCISE_IMAGES = {
     "push-ups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Push-up%20start%20and%20end%20positions.png",
     "squats": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Squat%20exercise%20progression%20illustration.png",
     "plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Plank%20exercise%20tutorial%20illustration.png",
-    "glute": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Glute%20bridge%20exercise%20demonstration.png",
+    "glute bridge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Glute%20bridge%20exercise%20demonstration.png",
     "burpees": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Burpee%20exercise%20step-by-step%20guide.png",
     "dumbbell chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20chest%20press%20demonstration.png",
-    "dumbbell shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20shoulder%20press%20demonstration%20steps.png"
+    "dumbbell shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
+    "lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Lunges%20exercise%20illustration.png"
 }
 
 client = OpenAI()
 
+
 def attach_images(data):
     for day in data.values():
         if isinstance(day, dict):
-            text = str(day).lower()
+            text = " ".join([
+                day.get("warmup", ""),
+                day.get("main_workout", ""),
+                day.get("finisher", ""),
+                day.get("note", "")
+            ]).lower()
+
+            matched_images = []
 
             for exercise, url in EXERCISE_IMAGES.items():
                 if exercise in text:
-                    day["image"] = url
+                    matched_images.append({
+                        "exercise": exercise,
+                        "url": url
+                    })
+
+            day["images"] = matched_images
 
     return data
+
 
 def generate_workout(goal, experience, equipment, days, duration, focus_area, limitations, exclude):
     schema = {
