@@ -2,65 +2,76 @@ import json
 from openai import OpenAI
 
 EXERCISE_IMAGES = {
-    "push-ups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Push-up%20form%20demonstration%20in%20stages.png",
-    "push up": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Push-up%20form%20demonstration%20in%20stages.png",
-    "pushups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Push-up%20form%20demonstration%20in%20stages.png",
-    
-    "squats": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Bodyweight%20squat%20demonstration%20in%20two%20stages.png",
-    "squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Bodyweight%20squat%20demonstration%20in%20two%20stages.png",
-    "bodyweight squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Bodyweight%20squat%20demonstration%20in%20two%20stages.png",
-    
-    "plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Plank%20exercise%20demonstration%20stages.png",
-    "high plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Plank%20exercise%20demonstration%20stages.png",
-    "forearm plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Plank%20exercise%20demonstration%20stages.png",
-    
-    "glute bridge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Glute%20bridge%20exercise%20demonstration.png",
-    "glute bridges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Glute%20bridge%20exercise%20demonstration.png",
-    
-    "burpees": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Burpee%20exercise%20progression%20demonstration.png",
-    "burpee": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Burpee%20exercise%20progression%20demonstration.png",
-    
-    "dumbbell chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Dumbbell%20chest%20press%20exercise%20demonstration.png",
-    "chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Dumbbell%20chest%20press%20exercise%20demonstration.png",
-    
-    "dumbbell shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
-    "shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
-    
-    "lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png",
-    "lunge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png",
-    "walking lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png"
+    "push-ups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Push-up%20start%20and%20end%20positions.png",
+    "push up": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Push-up%20start%20and%20end%20positions.png",
+    "pushups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Push-up%20start%20and%20end%20positions.png",
+
+    "squats": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Squat%20exercise%20progression%20illustration.png",
+    "squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Squat%20exercise%20progression%20illustration.png",
+    "bodyweight squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Squat%20exercise%20progression%20illustration.png",
+
+    "plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Plank%20exercise%20tutorial%20illustration.png",
+    "high plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Plank%20exercise%20tutorial%20illustration.png",
+    "forearm plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Plank%20exercise%20tutorial%20illustration.png",
+
+    "glute bridge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Glute%20bridge%20exercise%20demonstration.png",
+    "glute bridges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Glute%20bridge%20exercise%20demonstration.png",
+
+    "burpees": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Burpee%20exercise%20step-by-step%20guide.png",
+    "burpee": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Burpee%20exercise%20step-by-step%20guide.png",
+
+    "dumbbell chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20chest%20press%20demonstration.png",
+    "chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20chest%20press%20demonstration.png",
+
+    "dumbbell shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
+    "shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
+
+    "lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Lunges%20exercise%20illustration.png",
+    "lunge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Lunges%20exercise%20illustration.png",
+    "walking lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Lunges%20exercise%20illustration.png"
 }
 
 client = OpenAI()
 
 
-def attach_images(data):
-    for day in data.values():
-        if isinstance(day, dict):
-            text = " ".join([
-                day.get("warmup", ""),
-                day.get("main_workout", ""),
-                day.get("finisher", ""),
-                day.get("note", "")
-            ]).lower()
+def find_exercise_image(exercise_text):
+    exercise_text = exercise_text.lower()
+    sorted_exercises = sorted(
+        EXERCISE_IMAGES.items(),
+        key=lambda x: len(x[0]),
+        reverse=True
+    )
 
-            matched_images = []
+    for exercise_name, image_url in sorted_exercises:
+        if exercise_name in exercise_text:
+            return image_url
 
-            for exercise, url in EXERCISE_IMAGES.items():
-                if exercise in text:
-                    matched_images.append({
-                        "exercise": exercise,
-                        "url": url
-                    })
+    return None
 
-            day["images"] = matched_images
 
-    return data
+def attach_images_to_items(day_data):
+    for section in ["warmup", "main_workout", "finisher"]:
+        for item in day_data.get(section, []):
+            exercise_name = item.get("exercise", "")
+            item["image"] = find_exercise_image(exercise_name)
+
+    return day_data
 
 
 def generate_workout(goal, experience, equipment, days, duration, focus_area, limitations, exclude):
+    exercise_item_schema = {
+        "type": "object",
+        "properties": {
+            "exercise": {"type": "string"},
+            "details": {"type": "string"}
+        },
+        "required": ["exercise", "details"],
+        "additionalProperties": False
+    }
+
     schema = {
         "name": "workout_plan",
+        "strict": True,
         "schema": {
             "type": "object",
             "properties": {
@@ -68,9 +79,18 @@ def generate_workout(goal, experience, equipment, days, duration, focus_area, li
                     f"day{i}": {
                         "type": "object",
                         "properties": {
-                            "warmup": {"type": "string"},
-                            "main_workout": {"type": "string"},
-                            "finisher": {"type": "string"},
+                            "warmup": {
+                                "type": "array",
+                                "items": exercise_item_schema
+                            },
+                            "main_workout": {
+                                "type": "array",
+                                "items": exercise_item_schema
+                            },
+                            "finisher": {
+                                "type": "array",
+                                "items": exercise_item_schema
+                            },
                             "note": {"type": "string"}
                         },
                         "required": ["warmup", "main_workout", "finisher", "note"],
@@ -92,6 +112,15 @@ Generate a workout plan for exactly {days} days.
 You must return exactly these keys:
 {", ".join([f"day{i}" for i in range(1, days + 1)])}
 
+For each day:
+- warmup must be an array of exercise objects
+- main_workout must be an array of exercise objects
+- finisher must be an array of exercise objects
+- each exercise object must have:
+  - "exercise": short exercise name
+  - "details": sets, reps, or duration
+- note must be a short coaching note
+
 Generate the workout plan for this user:
 
 - Goal: {goal}
@@ -102,7 +131,11 @@ Generate the workout plan for this user:
 - Limitations: {limitations}
 - Exclude these exercises: {", ".join(exclude) if exclude else "none"}
 
-Keep each day practical and realistic for the user's level, available time, equipment, focus area, and limitations.
+Rules:
+- Keep each day practical and realistic.
+- Keep exercise names short and clean.
+- Do not include excluded exercises.
+- Prefer common exercise names like "push-ups", "squats", "plank", "lunges".
 """
 
     response = client.chat.completions.create(
@@ -123,7 +156,6 @@ Keep each day practical and realistic for the user's level, available time, equi
         data = json.loads(output)
 
         expected_day_keys = [f"day{i}" for i in range(1, days + 1)]
-        expected_section_keys = ["warmup", "main_workout", "finisher", "note"]
 
         for day_key in expected_day_keys:
             if day_key not in data or not isinstance(data[day_key], dict):
@@ -132,14 +164,34 @@ Keep each day practical and realistic for the user's level, available time, equi
                     "raw_output": output
                 }
 
-            for section_key in expected_section_keys:
-                if section_key not in data[day_key] or not data[day_key][section_key]:
+            for section in ["warmup", "main_workout", "finisher"]:
+                if section not in data[day_key] or not isinstance(data[day_key][section], list):
                     return {
                         "error": "Invalid structure from AI",
                         "raw_output": output
                     }
 
-        data = attach_images(data)
+                for item in data[day_key][section]:
+                    if not isinstance(item, dict):
+                        return {
+                            "error": "Invalid structure from AI",
+                            "raw_output": output
+                        }
+
+                    if "exercise" not in item or "details" not in item:
+                        return {
+                            "error": "Invalid structure from AI",
+                            "raw_output": output
+                        }
+
+            if "note" not in data[day_key] or not isinstance(data[day_key]["note"], str):
+                return {
+                    "error": "Invalid structure from AI",
+                    "raw_output": output
+                }
+
+            data[day_key] = attach_images_to_items(data[day_key])
+
         return data
 
     except json.JSONDecodeError:
