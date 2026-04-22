@@ -3,16 +3,8 @@ import csv
 import os
 import json
 from datetime import datetime
-from ai_workout import generate_workout, EXERCISE_IMAGES
+from ai_workout import generate_workout
 
-def find_exercise_image(exercise_text):
-    exercise_text = exercise_text.lower()
-
-    for exercise_name, image_url in EXERCISE_IMAGES.items():
-        if exercise_name in exercise_text:
-            return exercise_name, image_url
-
-    return None, None
 
 def render_exercise_card(item):
     exercise = item.get("exercise", "Unknown exercise")
@@ -32,13 +24,31 @@ def render_exercise_card(item):
     st.markdown("---")
 
 
-def section_to_text(items):
+def format_plan_as_text(plan):
     lines = []
-    for item in items:
-        exercise = item.get("exercise", "")
-        details = item.get("details", "")
-        lines.append(f"- {exercise}: {details}")
-    return lines
+
+    for day, details in plan.items():
+        if not isinstance(details, dict):
+            continue
+
+        lines.append(f"{day.upper()}")
+
+        lines.append("Warmup:")
+        for item in details["warmup"]:
+            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
+
+        lines.append("Main workout:")
+        for item in details["main_workout"]:
+            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
+
+        lines.append("Finisher:")
+        for item in details["finisher"]:
+            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
+
+        lines.append(f"Note: {details['note']}")
+        lines.append("")
+
+    return "\n".join(lines)
 
 st.set_page_config(page_title="AI Workout Generator", page_icon="💪")
 
@@ -99,17 +109,18 @@ def format_plan_as_text(plan):
             continue
 
         lines.append(f"{day.upper()}")
+
         lines.append("Warmup:")
-        for item in details["warmup"].split(", "):
-            lines.append(f"- {item}")
+        for item in details["warmup"]:
+            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
 
         lines.append("Main workout:")
-        for item in details["main_workout"].split(", "):
-            lines.append(f"- {item}")
+        for item in details["main_workout"]:
+            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
 
         lines.append("Finisher:")
-        for item in details["finisher"].split(", "):
-            lines.append(f"- {item}")
+        for item in details["finisher"]:
+            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
 
         lines.append(f"Note: {details['note']}")
         lines.append("")
@@ -249,11 +260,6 @@ if st.session_state.workout_result is not None:
             for item in details["warmup"]:
                 render_exercise_card(item)
 
-                exercise_name, image_url = find_exercise_image(item)
-                if image_url:
-                    st.image(image_url, width=220)
-                    st.caption(exercise_name.title())
-
             st.write("**Main workout:**")
             for item in details["main_workout"]:
                 render_exercise_card(item)
@@ -261,11 +267,6 @@ if st.session_state.workout_result is not None:
             st.write("**Finisher:**")
             for item in details["finisher"]:
                 render_exercise_card(item)
-
-                exercise_name, image_url = find_exercise_image(item)
-                if image_url:
-                    st.image(image_url, width=220)
-                    st.caption(exercise_name.title())
 
             st.write(f"**Note:** {details['note']}")
 
