@@ -24,7 +24,11 @@ def render_exercise_card(text):
             st.image(image_url, use_container_width=True)
 
     with col2:
-        st.markdown(f"**{text}**")
+        st.markdown(f"""
+        <div style="font-size:16px; padding-top:10px;">
+        {text}
+        </div>
+        """, unsafe_allow_html=True)
 
     st.markdown("---")
 
@@ -235,7 +239,7 @@ if st.session_state.workout_result is not None:
 
             st.write("**Warmup:**")
             for item in details["warmup"].split(", "):
-                st.markdown(f"- {item}")
+                render_exercise_card(item)
 
                 exercise_name, image_url = find_exercise_image(item)
                 if image_url:
@@ -248,7 +252,7 @@ if st.session_state.workout_result is not None:
 
             st.write("**Finisher:**")
             for item in details["finisher"].split(", "):
-                st.markdown(f"- {item}")
+                render_exercise_card(item)
 
                 exercise_name, image_url = find_exercise_image(item)
                 if image_url:
