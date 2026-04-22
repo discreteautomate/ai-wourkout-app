@@ -14,6 +14,20 @@ def find_exercise_image(exercise_text):
 
     return None, None
 
+def render_exercise_card(text):
+    exercise_name, image_url = find_exercise_image(text)
+
+    col1, col2 = st.columns([1, 2])
+
+    with col1:
+        if image_url:
+            st.image(image_url, use_container_width=True)
+
+    with col2:
+        st.markdown(f"**{text}**")
+
+    st.markdown("---")
+
 st.set_page_config(page_title="AI Workout Generator", page_icon="💪")
 
 SAVED_PLANS_FILE = "saved_plans.json"
