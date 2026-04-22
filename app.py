@@ -14,8 +14,10 @@ def find_exercise_image(exercise_text):
 
     return None, None
 
-def render_exercise_card(text):
-    exercise_name, image_url = find_exercise_image(text)
+def render_exercise_card(item):
+    exercise = item.get("exercise", "Unknown exercise")
+    details = item.get("details", "")
+    image_url = item.get("image")
 
     col1, col2 = st.columns([1, 2])
 
@@ -24,13 +26,19 @@ def render_exercise_card(text):
             st.image(image_url, use_container_width=True)
 
     with col2:
-        st.markdown(f"""
-        <div style="font-size:16px; padding-top:10px;">
-        {text}
-        </div>
-        """, unsafe_allow_html=True)
+        st.markdown(f"**{exercise.title()}**")
+        st.write(details)
 
     st.markdown("---")
+
+
+def section_to_text(items):
+    lines = []
+    for item in items:
+        exercise = item.get("exercise", "")
+        details = item.get("details", "")
+        lines.append(f"- {exercise}: {details}")
+    return lines
 
 st.set_page_config(page_title="AI Workout Generator", page_icon="💪")
 
@@ -238,7 +246,7 @@ if st.session_state.workout_result is not None:
             st.markdown(f"### {day.upper()}")
 
             st.write("**Warmup:**")
-            for item in details["warmup"].split(", "):
+            for item in details["warmup"]:
                 render_exercise_card(item)
 
                 exercise_name, image_url = find_exercise_image(item)
@@ -247,11 +255,11 @@ if st.session_state.workout_result is not None:
                     st.caption(exercise_name.title())
 
             st.write("**Main workout:**")
-            for item in details["main_workout"].split(", "):
+            for item in details["main_workout"]:
                 render_exercise_card(item)
 
             st.write("**Finisher:**")
-            for item in details["finisher"].split(", "):
+            for item in details["finisher"]:
                 render_exercise_card(item)
 
                 exercise_name, image_url = find_exercise_image(item)
