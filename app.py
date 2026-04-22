@@ -22,6 +22,8 @@ def render_exercise_card(item):
     col1, col2 = st.columns([1, 2])
 
     with col1:
+        if image_url:
+            st.image(image_url, use_container_width=True)
 
     with col2:
         st.markdown(f"**{exercise.title()}**")
