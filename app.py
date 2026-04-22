@@ -244,12 +244,7 @@ if st.session_state.workout_result is not None:
 
             st.write("**Main workout:**")
             for item in details["main_workout"].split(", "):
-                st.markdown(f"- {item}")
-
-                exercise_name, image_url = find_exercise_image(item)
-                if image_url:
-                    st.image(image_url, width=220)
-                    st.caption(exercise_name.title())
+                render_exercise_card(item)
 
             st.write("**Finisher:**")
             for item in details["finisher"].split(", "):
