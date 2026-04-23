@@ -21,7 +21,7 @@ def render_exercise_card(item):
         st.markdown(f"**{exercise.title()}**")
         st.write(details)
 
-    st.markdown("---")
+    st.markdown("<br>", unsafe_allow_html=True)
 
 
 def format_plan_as_text(plan):
@@ -101,31 +101,6 @@ def clear_user_plans(user_id):
         save_saved_plans(all_plans)
 
 
-def format_plan_as_text(plan):
-    lines = []
-
-    for day, details in plan.items():
-        if not isinstance(details, dict):
-            continue
-
-        lines.append(f"{day.upper()}")
-
-        lines.append("Warmup:")
-        for item in details["warmup"]:
-            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
-
-        lines.append("Main workout:")
-        for item in details["main_workout"]:
-            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
-
-        lines.append("Finisher:")
-        for item in details["finisher"]:
-            lines.append(f"- {item.get('exercise', '')}: {item.get('details', '')}")
-
-        lines.append(f"Note: {details['note']}")
-        lines.append("")
-
-    return "\n".join(lines)
 
 
 if "workout_result" not in st.session_state:
