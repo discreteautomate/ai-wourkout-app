@@ -28,7 +28,16 @@ EXERCISE_IMAGES = {
 
     "lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png",
     "lunge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png",
-    "walking lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png"
+    "walking lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png",
+
+    "torso twists": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/torso%20twist.png",
+    "russian twists": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/torso%20twist.png",
+
+    "arm circles": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/arm%20circles.png",
+    "shoulder circles": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/arm%20circles.png",
+
+    "high knees": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/high%20knees.png",
+    "knee raises": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/high%20knees.png"
 }
 
 client = OpenAI()
