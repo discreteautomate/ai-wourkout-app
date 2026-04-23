@@ -2,33 +2,33 @@ import json
 from openai import OpenAI
 
 EXERCISE_IMAGES = {
-    "push-ups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Push-up%20start%20and%20end%20positions.png",
-    "push up": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Push-up%20start%20and%20end%20positions.png",
-    "pushups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Push-up%20start%20and%20end%20positions.png",
+    "push-ups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Push-up%20form%20demonstration%20in%20stages.png",
+    "push up": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Push-up%20form%20demonstration%20in%20stages.png",
+    "pushups": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Push-up%20form%20demonstration%20in%20stages.png",
 
-    "squats": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Squat%20exercise%20progression%20illustration.png",
-    "squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Squat%20exercise%20progression%20illustration.png",
-    "bodyweight squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Squat%20exercise%20progression%20illustration.png",
+    "squats": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Bodyweight%20squat%20demonstration%20in%20two%20stages.png",
+    "squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Bodyweight%20squat%20demonstration%20in%20two%20stages.png",
+    "bodyweight squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Bodyweight%20squat%20demonstration%20in%20two%20stages.png",
 
-    "plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Plank%20exercise%20tutorial%20illustration.png",
-    "high plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Plank%20exercise%20tutorial%20illustration.png",
-    "forearm plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Plank%20exercise%20tutorial%20illustration.png",
+    "plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Plank%20exercise%20demonstration%20stages.png",
+    "high plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Plank%20exercise%20demonstration%20stages.png",
+    "forearm plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Plank%20exercise%20demonstration%20stages.png",
 
-    "glute bridge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Glute%20bridge%20exercise%20demonstration.png",
-    "glute bridges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Glute%20bridge%20exercise%20demonstration.png",
+    "glute bridge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Glute%20bridge%20exercise%20demonstration.png",
+    "glute bridges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Glute%20bridge%20exercise%20demonstration.png",
 
-    "burpees": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Burpee%20exercise%20step-by-step%20guide.png",
-    "burpee": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Burpee%20exercise%20step-by-step%20guide.png",
+    "burpees": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Burpee%20exercise%20progression%20demonstration.png",
+    "burpee": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Burpee%20exercise%20progression%20demonstration.png",
 
-    "dumbbell chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20chest%20press%20demonstration.png",
-    "chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20chest%20press%20demonstration.png",
+    "dumbbell chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Dumbbell%20chest%20press%20exercise%20demonstration.png",
+    "chest press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Dumbbell%20chest%20press%20exercise%20demonstration.png",
 
-    "dumbbell shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
-    "shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
+    "dumbbell shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
+    "shoulder press": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Dumbbell%20shoulder%20press%20demonstration%20steps.png",
 
-    "lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Lunges%20exercise%20illustration.png",
-    "lunge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Lunges%20exercise%20illustration.png",
-    "walking lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/Lunges%20exercise%20illustration.png"
+    "lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png",
+    "lunge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png",
+    "walking lunges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Forward%20lunge%20exercise%20demonstration.png"
 }
 
 client = OpenAI()
