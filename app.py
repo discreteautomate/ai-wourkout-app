@@ -343,3 +343,10 @@ if st.session_state.workout_result is not None:
             ])
 
         st.success("Feedback saved. Thank you 🙌")
+
+if st.checkbox("Show Feedback (Admin)"):
+    if os.path.exists(FEEDBACK_FILE):
+        with open(FEEDBACK_FILE, "r", encoding="utf-8") as file:
+            st.text(file.read())
+    else:
+        st.info("No feedback yet.")
