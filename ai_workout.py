@@ -10,9 +10,9 @@ EXERCISE_IMAGES = {
     "squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Bodyweight%20squat%20demonstration%20in%20two%20stages.png",
     "bodyweight squat": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Bodyweight%20squat%20demonstration%20in%20two%20stages.png",
 
-    "plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/planks%20expolained.png",
-    "high plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/planks%20expolained.png",
-    "forearm plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/planks%20expolained.png",
+    "plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/planks%20explained%20large%20letters.png",
+    "high plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/planks%20explained%20large%20letters.png",
+    "forearm plank": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/planks%20explained%20large%20letters.png",
 
     "glute bridge": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Glute%20bridge%20exercise%20demonstration.png",
     "glute bridges": "https://raw.githubusercontent.com/discreteautomate/ai-wourkout-app/refs/heads/main/images/Glute%20bridge%20exercise%20demonstration.png",
