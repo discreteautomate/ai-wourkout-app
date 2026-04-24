@@ -172,8 +172,15 @@ if "workout_result" not in st.session_state:
 if "loaded_user" not in st.session_state:
     st.session_state.loaded_user = ""
 
-st.title("AI Workout Generator 💪")
-st.write("Create a personalized workout plan in seconds.")
+st.markdown(
+    """
+    <div class="premium-hero">
+        <h1>AI Workout Generator 💪</h1>
+        <p>Create a personalized workout plan in seconds.</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 user_id = st.text_input("Enter your email or username to save your plans").strip().lower()
 
