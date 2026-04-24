@@ -21,11 +21,14 @@ def render_exercise_card(item):
         <div style="
             padding: 18px;
             border-radius: 18px;
-            background-color: #f7f7f7;
-            margin-bottom: 18px;
+            background-color: rgba(128, 128, 128, 0.12);
+            border: 1px solid rgba(128, 128, 128, 0.25);
+            margin-bottom: 14px;
         ">
-            <h3 style="margin-bottom: 6px;">{exercise.title()}</h3>
-            <p style="font-size: 16px; margin-top: 0;"><b>{details}</b></p>
+            <h3 style="margin-bottom: 6px; color: inherit;">{exercise.title()}</h3>
+            <p style="font-size: 16px; margin-top: 0; color: inherit;">
+                <b>{details}</b>
+            </p>
         </div>
         """,
         unsafe_allow_html=True
