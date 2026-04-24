@@ -163,17 +163,17 @@ if st.session_state.screen == "form":
     st.caption("Tip: Click regenerate to explore different workout variations.")
 
     if st.button("Generate Workout 💪"):
-            with st.spinner("Generating your workout plan..."):
-                result = generate_workout(
-                    goal,
-                    experience,
-                    equipment,
-                    days,
-                    duration,
-                    focus_area,
-                    limitations,
-                    exclude
-                )
+        with st.spinner("Generating your workout plan..."):
+            result = generate_workout(
+                goal,
+                experience,
+                equipment,
+                days,
+                duration,
+                focus_area,
+                limitations,
+                exclude
+            )
 
         st.session_state.workout_result = result
         st.session_state.screen = "results"
