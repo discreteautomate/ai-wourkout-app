@@ -161,6 +161,22 @@ if st.session_state.screen == "form":
     )
 
     st.caption("Tip: Click regenerate to explore different workout variations.")
+
+elif st.session_state.screen == "results":
+
+    st.markdown("## Your Workout Plan 💪")
+
+    result = st.session_state.workout_result
+
+    if result:
+        for day, content in result.items():
+            st.subheader(day.capitalize())
+            st.write(content)
+
+    if st.button("🔄 Create New Workout"):
+        st.session_state.screen = "form"
+        st.rerun()
+
 # Auto-load latest saved plan when user changes
 if user_id != st.session_state.loaded_user:
     user_plans = get_user_plans(user_id) if user_id else []
