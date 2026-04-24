@@ -183,45 +183,6 @@ if user_id != st.session_state.loaded_user:
     st.session_state.workout_result = user_plans[0]["plan"] if user_plans else None
     st.session_state.loaded_user = user_id
 
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    generate_clicked = st.button("Generate Workout", use_container_width=True)
-
-with col2:
-    regenerate_clicked = st.button("Regenerate 🔄", use_container_width=True)
-
-with col3:
-    clear_current_clicked = st.button("Clear Workout", use_container_width=True)
-
-with col4:
-    clear_saved_clicked = st.button("Clear Saved", use_container_width=True)
-
-if clear_current_clicked:
-    st.session_state.workout_result = None
-    st.success("Current workout cleared.")
-
-if clear_saved_clicked:
-    if user_id:
-        clear_user_plans(user_id)
-        st.session_state.workout_result = None
-        st.success("Saved plans cleared.")
-    else:
-        st.warning("Enter your email or username first.")
-
-if generate_clicked or regenerate_clicked:
-    with st.spinner("Generating your workout plan..."):
-        result = generate_workout(
-            goal,
-            experience,
-            equipment,
-            days,
-            duration,
-            focus_area,
-            limitations,
-            exclude
-        )
-
     st.session_state.workout_result = result
 
     if user_id and "error" not in result:
@@ -366,7 +327,7 @@ if st.session_state.workout_result is not None:
                 feedback_text
             ])
 
-        st.success("Feedback saved. Thank you 🙌")
+        st.success("Feedback saved. Thank you 💪")
 
 admin_password = st.text_input("Admin Access", type="password")
 
