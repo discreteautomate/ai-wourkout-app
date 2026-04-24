@@ -5,6 +5,11 @@ import json
 from datetime import datetime
 from ai_workout import generate_workout
 
+if "screen" not in st.session_state:
+    st.session_state.screen = "form"
+
+if "workout_result" not in st.session_state:
+    st.session_state.workout_result = None
 
 def render_exercise_card(item):
     exercise = item.get("exercise", "Unknown exercise")
