@@ -242,15 +242,15 @@ if st.session_state.workout_result is not None:
 
             st.markdown(f"### {day.upper()}")
 
-            st.write("**Warmup:**")
+            st.markdown("### 🔥 Warmup")
             for item in details["warmup"]:
                 render_exercise_card(item)
 
-            st.write("**Main workout:**")
+            st.markdown("### 🏋️ Main workout")
             for item in details["main_workout"]:
                 render_exercise_card(item)
 
-            st.write("**Finisher:**")
+            st.markdown("### ⚡ Finisher")
             for item in details["finisher"]:
                 render_exercise_card(item)
 
