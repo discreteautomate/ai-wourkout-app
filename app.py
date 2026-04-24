@@ -119,45 +119,48 @@ st.write("Create a personalized workout plan in seconds.")
 
 user_id = st.text_input("Enter your email or username to save your plans").strip().lower()
 
-goal = st.selectbox(
-    "Select your goal",
-    ["fat loss", "muscle gain", "strength"]
-)
+if st.session_state.screen == "form":
 
-experience = st.selectbox(
-    "Select your experience level",
-    ["beginner", "intermediate", "advanced"]
-)
+    st.write("Create a personalized workout plan")
 
-equipment = st.selectbox(
-    "Select available equipment",
-    ["bodyweight", "gym", "dumbbells"]
-)
+    goal = st.selectbox(
+        "Select your goal",
+        ["fat loss", "muscle gain", "strength"]
+    )
 
-days = st.slider("Number of days", 1, 7, 3)
+    experience = st.selectbox(
+        "Select your experience level",
+        ["beginner", "intermediate", "advanced"]
+    )
 
-duration = st.selectbox(
-    "Workout duration (minutes)",
-    [20, 30, 45, 60]
-)
+    equipment = st.selectbox(
+        "Select available equipment",
+        ["bodyweight", "gym", "dumbbells"]
+    )
 
-focus_area = st.selectbox(
-    "Focus area",
-    ["full body", "upper body", "lower body", "core"]
-)
+    days = st.slider("Number of days", 1, 7, 3)
 
-limitations = st.text_input(
-    "Limitations or injuries",
-    value="none"
-)
+    duration = st.selectbox(
+        "Workout duration (minutes)",
+        [20, 30, 45, 60]
+    )
 
-exclude = st.multiselect(
-    "Exclude exercises",
-    ["plank", "burpees", "squats", "lunges", "push-ups"]
-)
+    focus_area = st.selectbox(
+        "Focus area",
+        ["full body", "upper body", "lower body", "core"]
+    )
 
-st.caption("Tip: Click regenerate to explore different workout variations.")
+    limitations = st.text_input(
+        "Limitations or injuries",
+        value="none"
+    )
 
+    exclude = st.multiselect(
+        "Exclude exercises",
+        ["plank", "burpees", "squats", "lunges", "push-ups"]
+    )
+
+    st.caption("Tip: Click regenerate to explore different workout variations.")
 # Auto-load latest saved plan when user changes
 if user_id != st.session_state.loaded_user:
     user_plans = get_user_plans(user_id) if user_id else []
