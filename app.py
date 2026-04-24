@@ -16,15 +16,23 @@ def render_exercise_card(item):
     details = item.get("details", "")
     image_url = item.get("image")
 
-    col1, col2 = st.columns([1, 2])
+    st.markdown(
+        f"""
+        <div style="
+            padding: 18px;
+            border-radius: 18px;
+            background-color: #f7f7f7;
+            margin-bottom: 18px;
+        ">
+            <h3 style="margin-bottom: 6px;">{exercise.title()}</h3>
+            <p style="font-size: 16px; margin-top: 0;"><b>{details}</b></p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-    with col1:
-        if image_url:
-            st.image(image_url, use_container_width=True)
-
-    with col2:
-        st.markdown(f"**{exercise.title()}**")
-        st.write(details)
+    if image_url:
+        st.image(image_url, use_container_width=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
