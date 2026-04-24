@@ -68,6 +68,53 @@ def format_plan_as_text(plan):
 
 st.set_page_config(page_title="AI Workout Generator", page_icon="💪")
 
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background: linear-gradient(180deg, rgba(120,120,120,0.10), rgba(0,0,0,0));
+    }
+
+    div[data-testid="stVerticalBlock"] {
+        gap: 0.75rem;
+    }
+
+    div.stButton > button {
+        width: 100%;
+        border-radius: 999px;
+        padding: 0.75rem 1rem;
+        font-weight: 700;
+        border: 1px solid rgba(128,128,128,0.25);
+    }
+
+    div[data-baseweb="select"] > div,
+    div[data-testid="stTextInput"] input {
+        border-radius: 14px;
+    }
+
+    .premium-hero {
+        padding: 22px;
+        border-radius: 24px;
+        background: rgba(128,128,128,0.12);
+        border: 1px solid rgba(128,128,128,0.25);
+        margin-bottom: 18px;
+    }
+
+    .premium-hero h1 {
+        margin-bottom: 6px;
+        font-size: 2rem;
+    }
+
+    .premium-hero p {
+        margin-top: 0;
+        opacity: 0.75;
+        font-size: 1rem;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 SAVED_PLANS_FILE = "saved_plans.json"
 FEEDBACK_FILE = "feedback.csv"
 
