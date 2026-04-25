@@ -278,6 +278,57 @@ if st.session_state.screen == "form":
         st.rerun()
 
 elif st.session_state.screen == "results":
+    
+    st.markdown("## Your Workout Plan 💪")
+
+    if st.button("▶️ Start Workout"):
+        st.session_state.screen = "workout"
+        st.session_state.current_step = 0
+        st.rerun()
+
+elif st.session_state.screen == "workout":
+
+    result = st.session_state.workout_result
+
+    # flatten exercises into a list
+    steps = []
+
+    for day, details in result.items():
+        if not isinstance(details, dict):
+            continue
+
+        for section in ["warmup", "main_workout", "finisher"]:
+            for item in details[section]:
+                steps.append(item)
+
+    current = st.session_state.current_step
+
+    if current < len(steps):
+        item = steps[current]
+
+        st.markdown("## 🏋️ Exercise")
+
+        render_exercise_card(item)
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button("⬅️ Previous") and current > 0:
+                st.session_state.current_step -= 1
+                st.rerun()
+
+        with col2:
+            if st.button("Next ➡️"):
+                st.session_state.current_step += 1
+                st.rerun()
+
+    else:
+        st.success("Workout complete! 🎉")
+
+        if st.button("Back to Plan"):
+            st.session_state.screen = "results"
+            st.rerun()
+    
 
     inputs = st.session_state.get("user_inputs", {})
 
