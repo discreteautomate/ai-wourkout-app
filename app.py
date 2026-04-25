@@ -188,13 +188,6 @@ if st.session_state.screen == "form":
 
     st.write("Create a personalized workout plan")
 
-    weight = st.number_input(
-        "Weight (kg)",
-        min_value=35,
-        max_value=250,
-        value=75
-    )
-
     goal = st.selectbox(
         "Select your goal",
         ["fat loss", "muscle gain", "strength"]
