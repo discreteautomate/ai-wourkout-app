@@ -308,7 +308,7 @@ if st.session_state.workout_result is not None:
             for item in details["finisher"]:
                 render_exercise_card(item)
 
-            st.write(f"**Note:** {details['note']}")
+            st.caption(f"💡 {details['note']}")
 
         st.divider()
 
