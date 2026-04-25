@@ -267,10 +267,45 @@ if st.session_state.screen == "form":
             )
 
         st.session_state.workout_result = result
+        st.session_state.user_inputs = {
+            "goal": goal,
+            "experience": experience,
+            "duration": duration,
+            "focus_area": focus_area
+        }
+        
         st.session_state.screen = "results"
         st.rerun()
 
 elif st.session_state.screen == "results":
+
+    inputs = st.session_state.get("user_inputs", {})
+
+    if inputs:
+        st.markdown(
+            f"""
+            <div style="
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                margin-bottom: 16px;
+            ">
+                <span style="padding:6px 12px;border-radius:999px;background:rgba(128,128,128,0.15);">
+                    🎯 {inputs.get('goal','').title()}
+                </span>
+                <span style="padding:6px 12px;border-radius:999px;background:rgba(128,128,128,0.15);">
+                    ⏱️ {inputs.get('duration','')} min
+                </span>
+                <span style="padding:6px 12px;border-radius:999px;background:rgba(128,128,128,0.15);">
+                    🏋️ {inputs.get('focus_area','').title()}
+                </span>
+                <span style="padding:6px 12px;border-radius:999px;background:rgba(128,128,128,0.15);">
+                    ⚡ {inputs.get('experience','').title()}
+                </span>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
     result = st.session_state.workout_result
 
