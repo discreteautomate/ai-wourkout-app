@@ -67,7 +67,7 @@ def attach_images_to_items(day_data):
     return day_data
 
 
-def generate_workout(age, height, weight, goal, experience, equipment, days, duration, focus_area, limitations, exclude):
+def generate_workout(goal, experience, equipment, days, duration, focus_area, age, height, weight, limitations, exclude):
     exercise_item_schema = {
         "type": "object",
         "properties": {
@@ -132,14 +132,14 @@ For each day:
 
 Generate the workout plan for this user:
 
-- Age: {age}
-- Height: {height} cm
-- Weight: {weight} kg
 - Goal: {goal}
 - Experience: {experience}
 - Equipment: {equipment}
 - Duration: {duration} minutes
 - Focus area: {focus_area}
+- Age: {age}
+- Height: {height} cm
+- Weight: {weight} kg
 - Limitations: {limitations}
 - Exclude these exercises: {", ".join(exclude) if exclude else "none"}
 
