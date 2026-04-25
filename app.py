@@ -110,6 +110,15 @@ st.markdown(
         opacity: 0.75;
         font-size: 1rem;
     }
+
+    .block-container {
+        padding-top: 1.2rem;
+        padding-bottom: 1rem;
+    }
+
+    header[data-testid="stHeader"] {
+        height: 0rem;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -185,6 +194,8 @@ st.markdown(
 user_id = st.text_input("Enter your email or username to save your plans").strip().lower()
 
 if st.session_state.screen == "form":
+
+    user_id = st.text_input("Enter your email or username to save your plans").strip().lower()
 
     st.write("Create a personalized workout plan")
 
@@ -306,19 +317,29 @@ elif st.session_state.screen == "workout":
     if current < len(steps):
         item = steps[current]
 
-        st.markdown("## 🏋️ Exercise")
+        st.markdown("### 🏋️ Workout Mode")
+        st.caption(f"Exercise {current + 1} of {len(steps)}")
+        st.progress((current + 1) / len(steps))
 
-        render_exercise_card(item)
+        exercise = item.get("exercise", "Unknown exercise")
+        details = item.get("details", "")
+        image_url = item.get("image")
 
-        col1, col2 = st.columns(2)
+        st.markdown(f"## {exercise.title()}")
+        st.markdown(f"**{details}**")
 
-        with col1:
-            if st.button("⬅️ Previous") and current > 0:
+        if image_url:
+            st.image(image_url, use_container_width=True)
+
+        nav_left, nav_space, nav_right = st.columns([1, 1, 1])
+
+        with nav_left:
+            if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0):
                 st.session_state.current_step -= 1
                 st.rerun()
 
-        with col2:
-            if st.button("Next ➡️"):
+        with nav_right:
+            if st.button("Next ➡️", use_container_width=True):
                 st.session_state.current_step += 1
                 st.rerun()
 
