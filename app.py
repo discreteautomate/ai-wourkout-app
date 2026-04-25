@@ -188,20 +188,6 @@ if st.session_state.screen == "form":
 
     st.write("Create a personalized workout plan")
 
-    age = st.number_input(
-        "Age",
-        min_value=13,
-        max_value=90,
-        value=30
-    )
-
-    height = st.number_input(
-        "Height (cm)",
-        min_value=120,
-        max_value=230,
-        value=175
-    )
-
     weight = st.number_input(
         "Weight (kg)",
         min_value=35,
@@ -236,15 +222,38 @@ if st.session_state.screen == "form":
         ["full body", "upper body", "lower body", "core"]
     )
 
-    limitations = st.text_input(
-        "Limitations or injuries",
-        value="none"
-    )
+    with st.expander("Advanced personalization"):
 
-    exclude = st.multiselect(
-        "Exclude exercises",
-        ["plank", "burpees", "squats", "lunges", "push-ups"]
-    )
+        age = st.number_input(
+            "Age",
+            min_value=13,
+            max_value=90,
+            value=30
+        )
+
+        height = st.number_input(
+            "Height (cm)",
+            min_value=120,
+            max_value=230,
+            value=175
+        )
+
+        weight = st.number_input(
+            "Weight (kg)",
+            min_value=35,
+            max_value=250,
+            value=75
+        )
+
+        limitations = st.text_input(
+            "Limitations or injuries",
+            value="none"
+        )
+
+        exclude = st.multiselect(
+            "Exclude exercises",
+            ["plank", "burpees", "squats", "lunges", "push-ups"]
+        )
 
     st.caption("Tip: Click regenerate to explore different workout variations.")
 
