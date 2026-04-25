@@ -249,6 +249,7 @@ elif st.session_state.screen == "results":
     result = st.session_state.workout_result
 
     st.markdown("## Your Workout Plan 💪")
+    st.caption("Built around your goal, experience, equipment, and preferences.")
 
     # your existing result display code goes here
 
