@@ -188,6 +188,27 @@ if st.session_state.screen == "form":
 
     st.write("Create a personalized workout plan")
 
+    age = st.number_input(
+        "Age",
+        min_value=13,
+        max_value=90,
+        value=30
+    )
+
+    height = st.number_input(
+        "Height (cm)",
+        min_value=120,
+        max_value=230,
+        value=175
+    )
+
+    weight = st.number_input(
+        "Weight (kg)",
+        min_value=35,
+        max_value=250,
+        value=75
+    )
+
     goal = st.selectbox(
         "Select your goal",
         ["fat loss", "muscle gain", "strength"]
@@ -230,6 +251,9 @@ if st.session_state.screen == "form":
     if st.button("Generate Workout 💪"):
         with st.spinner("Generating your workout plan..."):
             result = generate_workout(
+                age,
+                height,
+                weight,
                 goal,
                 experience,
                 equipment,
@@ -268,6 +292,9 @@ if user_id != st.session_state.loaded_user:
 
     if user_id and "error" not in result:
         inputs = {
+            "age": age,
+            "height": height,
+            "weight": weight,
             "goal": goal,
             "experience": experience,
             "equipment": equipment,
