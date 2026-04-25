@@ -253,15 +253,15 @@ if st.session_state.screen == "form":
     if st.button("Generate Workout 💪"):
         with st.spinner("Generating your workout plan..."):
             result = generate_workout(
-                age,
-                height,
-                weight,
                 goal,
                 experience,
                 equipment,
                 days,
                 duration,
                 focus_area,
+                age,
+                height,
+                weight,
                 limitations,
                 exclude
             )
