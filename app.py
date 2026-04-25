@@ -191,11 +191,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-user_id = st.text_input("Enter your email or username to save your plans").strip().lower()
-
 if st.session_state.screen == "form":
 
-    user_id = st.text_input("Enter your email or username to save your plans").strip().lower()
+    user_id = st.text_input(
+        "Enter your email or username to save your plans",
+        key="user_id_input"
+    ).strip().lower()
 
     st.write("Create a personalized workout plan")
 
