@@ -11,6 +11,11 @@ if "screen" not in st.session_state:
 if "workout_result" not in st.session_state:
     st.session_state.workout_result = None
 
+if "user_id" not in st.session_state:
+    st.session_state.user_id = ""
+
+user_id = st.session_state.user_id
+
 def render_exercise_card(item):
     exercise = item.get("exercise", "Unknown exercise")
     details = item.get("details", "")
@@ -193,10 +198,13 @@ st.markdown(
 
 if st.session_state.screen == "form":
 
-    user_id = st.text_input(
+    st.session_state.user_id = st.text_input(
         "Enter your email or username to save your plans",
+        value=st.session_state.user_id,
         key="user_id_input"
     ).strip().lower()
+
+    user_id = st.session_state.user_id
 
     st.write("Create a personalized workout plan")
 
