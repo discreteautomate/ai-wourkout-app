@@ -356,6 +356,20 @@ elif st.session_state.screen == "workout":
                 st.session_state.rest_time = 0
                 st.session_state.current_step += 1
                 st.rerun()
+    
+        else:
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+                if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0, key="workout_previous"):
+                st.session_state.current_step -= 1
+                st.rerun()
+
+        with col2:
+            if st.button("Next ➡️", use_container_width=True, key="workout_next"):
+                st.session_state.rest_time = 30
+                st.rerun()
 
     else:
         st.success("Workout complete! 🎉")
