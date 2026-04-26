@@ -359,18 +359,6 @@ elif st.session_state.screen == "workout":
 
         else:
 
-            col1, col2 = st.columns(2)
-
-            with col1:
-                if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0):
-                    st.session_state.current_step -= 1
-                    st.rerun()
-
-            with col2:
-                if st.button("Next ➡️", use_container_width=True):
-                    st.session_state.rest_time = 30  # default rest
-                    st.rerun()
-
         nav_left, nav_space, nav_right = st.columns([1, 1, 1])
 
         with nav_left:
