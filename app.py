@@ -357,16 +357,6 @@ elif st.session_state.screen == "workout":
                 st.session_state.current_step += 1
                 st.rerun()
 
-        with nav_left:
-            if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0, key="workout_previous"):
-                st.session_state.current_step -= 1
-                st.rerun()
-
-        with nav_right:
-            if st.button("Next ➡️", use_container_width=True, key="workout_next"):
-                st.session_state.current_step += 1
-                st.rerun()
-
     else:
         st.success("Workout complete! 🎉")
 
