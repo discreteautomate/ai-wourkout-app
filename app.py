@@ -363,8 +363,8 @@ elif st.session_state.screen == "workout":
 
             with col1:
                 if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0, key="workout_previous"):
-                st.session_state.current_step -= 1
-                st.rerun()
+                    st.session_state.current_step -= 1
+                    st.rerun()
 
         with col2:
             if st.button("Next ➡️", use_container_width=True, key="workout_next"):
