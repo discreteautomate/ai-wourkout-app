@@ -5,6 +5,9 @@ import json
 from datetime import datetime
 from ai_workout import generate_workout
 
+if "rest_time" not in st.session_state:
+    st.session_state.rest_time = 0
+
 if "screen" not in st.session_state:
     st.session_state.screen = "form"
 
@@ -339,6 +342,34 @@ elif st.session_state.screen == "workout":
 
         if image_url:
             st.image(image_url, use_container_width=True)
+
+        # 🔥 REST MODE
+        if st.session_state.rest_time > 0:
+
+            st.markdown(f"### ⏱ Rest: {st.session_state.rest_time} sec")
+
+            if st.button("➖ 5 sec"):
+                st.session_state.rest_time = max(0, st.session_state.rest_time - 5)
+                st.rerun()
+
+            if st.button("Skip Rest"):
+                st.session_state.rest_time = 0
+                st.session_state.current_step += 1
+                st.rerun()
+
+        else:
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+                if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0):
+                    st.session_state.current_step -= 1
+                    st.rerun()
+
+            with col2:
+                if st.button("Next ➡️", use_container_width=True):
+                    st.session_state.rest_time = 30  # default rest
+                    st.rerun()
 
         nav_left, nav_space, nav_right = st.columns([1, 1, 1])
 
