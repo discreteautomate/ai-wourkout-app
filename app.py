@@ -366,10 +366,10 @@ elif st.session_state.screen == "workout":
                     st.session_state.current_step -= 1
                     st.rerun()
 
-        with col2:
-            if st.button("Next ➡️", use_container_width=True, key="workout_next"):
-                st.session_state.rest_time = 30
-                st.rerun()
+            with col2:
+                if st.button("Next ➡️", use_container_width=True, key="workout_next"):
+                    st.session_state.rest_time = 30
+                    st.rerun()
 
     else:
         st.success("Workout complete! 🎉")
