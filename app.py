@@ -357,10 +357,6 @@ elif st.session_state.screen == "workout":
                 st.session_state.current_step += 1
                 st.rerun()
 
-        else:
-
-        nav_left, nav_space, nav_right = st.columns([1, 1, 1])
-
         with nav_left:
             if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0, key="workout_previous"):
                 st.session_state.current_step -= 1
