@@ -348,11 +348,11 @@ elif st.session_state.screen == "workout":
 
             st.markdown(f"### ⏱ Rest: {st.session_state.rest_time} sec")
 
-            if st.button("➖ 5 sec"):
+            if st.button("➖ 5 sec", key="rest_minus_5"):
                 st.session_state.rest_time = max(0, st.session_state.rest_time - 5)
                 st.rerun()
 
-            if st.button("Skip Rest"):
+            if st.button("Skip Rest", key="skip_rest"):
                 st.session_state.rest_time = 0
                 st.session_state.current_step += 1
                 st.rerun()
@@ -374,12 +374,12 @@ elif st.session_state.screen == "workout":
         nav_left, nav_space, nav_right = st.columns([1, 1, 1])
 
         with nav_left:
-            if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0):
+            if st.button("⬅️ Previous", use_container_width=True, disabled=current == 0, key="workout_previous"):
                 st.session_state.current_step -= 1
                 st.rerun()
 
         with nav_right:
-            if st.button("Next ➡️", use_container_width=True):
+            if st.button("Next ➡️", use_container_width=True, key="workout_next"):
                 st.session_state.current_step += 1
                 st.rerun()
 
