@@ -6,14 +6,17 @@ from datetime import datetime
 from ai_workout import generate_workout, swap_exercise
 import time
 
-if "rest_time" not in st.session_state:
-    st.session_state.rest_time = 0
-
 if "screen" not in st.session_state:
     st.session_state.screen = "form"
 
 if "workout_result" not in st.session_state:
     st.session_state.workout_result = None
+
+if "rest_time" not in st.session_state:
+    st.session_state.rest_time = 0
+
+if "rest_paused" not in st.session_state:
+    st.session_state.rest_paused = False
 
 if "user_id" not in st.session_state:
     st.session_state.user_id = ""
