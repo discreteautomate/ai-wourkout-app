@@ -363,6 +363,9 @@ elif st.session_state.screen == "workout":
         if image_url:
             st.image(image_url, use_container_width=True)
 
+        if st.button("🔁 Swap Exercise", use_container_width=True, key=f"swap_{current}"):
+            st.warning("Swap Exercise coming next.")
+
         # 🔥 REST MODE
         if st.session_state.rest_time > 0:
 
