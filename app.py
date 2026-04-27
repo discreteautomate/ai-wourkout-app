@@ -387,6 +387,9 @@ elif st.session_state.screen == "workout":
             index = step["index"]
         
             st.session_state.workout_result[day][section][index] = new_item
+            st.session_state.last_swap_message = (
+                f"Swapped {item.get('exercise', '')} → {new_item.get('exercise', '')}"
+            )
         
             st.success(f"Swapped: {old_exercise} → {new_item.get('exercise', '')}")
             st.rerun()
