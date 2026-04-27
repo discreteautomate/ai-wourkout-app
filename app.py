@@ -400,16 +400,18 @@ elif st.session_state.screen == "workout":
         # 🔥 REST MODE
         if st.session_state.rest_time > 0:
 
-            st.markdown(f"### ⏱ Rest: {st.session_state.rest_time} sec")
-
-            if st.button("➖ 5 sec", key="rest_minus_5"):
-                st.session_state.rest_time = max(0, st.session_state.rest_time - 5)
-                st.rerun()
-
-            if st.button("Skip Rest", key="skip_rest"):
-                st.session_state.rest_time = 0
+            st.markdown(f"## ⏱ Rest: {st.session_state.rest_time} sec")
+        
+            time.sleep(1)
+        
+            st.session_state.rest_time -= 1
+        
+            if st.session_state.rest_time <= 0:
                 st.session_state.current_step += 1
-                st.rerun()
+                st.session_state.rest_time = 0
+        
+            st.rerun()
+
     
         else:
 
