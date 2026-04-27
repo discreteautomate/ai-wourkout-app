@@ -364,6 +364,8 @@ elif st.session_state.screen == "workout":
             st.image(image_url, use_container_width=True)
 
         if st.button("🔁 Swap Exercise", use_container_width=True, key=f"swap_{current}"):
+            old_exercise = item.get("exercise", "")
+        
             with st.spinner("Finding a better alternative..."):
                 new_item = swap_exercise(
                     item.get("exercise", ""),
@@ -375,8 +377,13 @@ elif st.session_state.screen == "workout":
                     st.session_state.user_inputs.get("exclude", [])
                 )
         
-            steps[current] = new_item
-            st.success("Exercise swapped.")
+            day = step["day"]
+            section = step["section"]
+            index = step["index"]
+        
+            st.session_state.workout_result[day][section][index] = new_item
+        
+            st.success(f"Swapped: {old_exercise} → {new_item.get('exercise', '')}")
             st.rerun()
 
         # 🔥 REST MODE
