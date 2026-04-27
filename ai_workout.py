@@ -206,6 +206,47 @@ Rules:
 
         return data
 
+
+        def swap_exercise(current_exercise, current_details, goal, experience, equipment, limitations, exclude):
+            prompt = f"""
+            Replace this exercise with one suitable alternative.
+        
+            Current exercise:
+            - Exercise: {current_exercise}
+            - Details: {current_details}
+        
+            User profile:
+            - Goal: {goal}
+            - Experience: {experience}
+            - Equipment: {equipment}
+            - Limitations or injuries: {limitations}
+            - Excluded exercises: {exclude}
+        
+            Rules:
+            - Do NOT return the same exercise.
+            - Respect the user's equipment.
+            - Respect injuries and limitations.
+            - Avoid excluded exercises.
+            - Keep the replacement similar in difficulty and purpose.
+            - Return ONLY valid JSON.
+        
+            JSON format:
+            {{
+              "exercise": "replacement exercise name",
+              "details": "sets/reps/duration"
+            }}
+            """
+        
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "user", "content": prompt}
+                ],
+                response_format={"type": "json_object"}
+            )
+        
+            return json.loads(response.choices[0].message.content)
+
     except json.JSONDecodeError:
         return {
             "error": "Invalid JSON from AI",
