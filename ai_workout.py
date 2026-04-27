@@ -247,8 +247,25 @@ Rules:
         
             return json.loads(response.choices[0].message.content)
 
-    except json.JSONDecodeError:
+        except json.JSONDecodeError:
         return {
             "error": "Invalid JSON from AI",
             "raw_output": output
         }
+
+
+def swap_exercise(current_exercise, current_details, goal, experience, equipment, limitations, exclude):
+    prompt = f"""
+    Replace this exercise with one suitable alternative.
+    ...
+    """
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        response_format={"type": "json_object"}
+    )
+
+    return json.loads(response.choices[0].message.content)
