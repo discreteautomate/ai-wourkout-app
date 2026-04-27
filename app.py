@@ -317,21 +317,20 @@ elif st.session_state.screen == "workout":
 
     result = st.session_state.workout_result
 
-    # flatten exercises into a list
     steps = []
 
-for day, details in result.items():
-    if not isinstance(details, dict):
-        continue
+    for day, details in result.items():
+        if not isinstance(details, dict):
+            continue
 
-    for section in ["warmup", "main_workout", "finisher"]:
-        for index, item in enumerate(details[section]):
-            steps.append({
-                "day": day,
-                "section": section,
-                "index": index,
-                "item": item
-            })
+        for section in ["warmup", "main_workout", "finisher"]:
+            for index, item in enumerate(details[section]):
+                steps.append({
+                    "day": day,
+                    "section": section,
+                    "index": index,
+                    "item": item
+                })
 
     current = st.session_state.current_step
 
