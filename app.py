@@ -4,6 +4,7 @@ import os
 import json
 from datetime import datetime
 from ai_workout import generate_workout, swap_exercise
+import time
 
 if "rest_time" not in st.session_state:
     st.session_state.rest_time = 0
