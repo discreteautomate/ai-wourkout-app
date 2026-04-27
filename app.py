@@ -362,6 +362,9 @@ elif st.session_state.screen == "workout":
         )
 
         st.progress((current + 1) / len(steps))
+        
+        if "last_swap_message" in st.session_state:
+            st.success(st.session_state.last_swap_message)
 
         image_url = item.get("image")
 
