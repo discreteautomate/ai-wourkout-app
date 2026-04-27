@@ -329,16 +329,34 @@ elif st.session_state.screen == "workout":
     if current < len(steps):
         item = steps[current]
 
-        st.markdown("### 🏋️ Workout Mode")
-        st.caption(f"Exercise {current + 1} of {len(steps)}")
-        st.progress((current + 1) / len(steps))
+        st.markdown(
+            f"""
+            <div style="
+                padding: 12px 14px;
+                border-radius: 18px;
+                background: rgba(128,128,128,0.12);
+                border: 1px solid rgba(128,128,128,0.22);
+                margin-bottom: 10px;
+            ">
+                <div style="font-size: 0.85rem; opacity: 0.75;">
+                    Exercise {current + 1} of {len(steps)}
+                </div>
+                <div style="font-size: 1.35rem; font-weight: 800; margin-top: 2px;">
+                    {item.get("exercise", "Unknown exercise").title()}
+                </div>
+                <div style="font-size: 0.95rem; opacity: 0.85; margin-top: 4px;">
+                    {item.get("details", "")}
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+st.progress((current + 1) / len(steps)))
 
         exercise = item.get("exercise", "Unknown exercise")
         details = item.get("details", "")
         image_url = item.get("image")
-
-        st.markdown(f"## {exercise.title()}")
-        st.markdown(f"**{details}**")
 
         if image_url:
             st.image(image_url, use_container_width=True)
