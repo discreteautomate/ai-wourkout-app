@@ -391,7 +391,6 @@ elif st.session_state.screen == "workout":
                 f"Swapped {item.get('exercise', '')} → {new_item.get('exercise', '')}"
             )
         
-            st.success(f"Swapped: {old_exercise} → {new_item.get('exercise', '')}")
             st.rerun()
 
         # 🔥 REST MODE
