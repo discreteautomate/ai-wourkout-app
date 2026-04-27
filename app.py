@@ -447,6 +447,7 @@ elif st.session_state.screen == "workout":
             with col2:
                 if st.button("Next ➡️", use_container_width=True, key="workout_next"):
                     st.session_state.rest_time = 30
+                    st.session_state.rest_paused = False
                     st.rerun()
 
     else:
