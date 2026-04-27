@@ -402,15 +402,34 @@ elif st.session_state.screen == "workout":
 
             st.markdown(f"## ⏱ Rest: {st.session_state.rest_time} sec")
         
-            time.sleep(1)
+            col1, col2 = st.columns(2)
         
-            st.session_state.rest_time -= 1
+            with col1:
+                if st.button("⏸ Pause Rest", use_container_width=True, key="pause_rest"):
+                    st.session_state.rest_paused = True
         
-            if st.session_state.rest_time <= 0:
-                st.session_state.current_step += 1
-                st.session_state.rest_time = 0
+            with col2:
+                if st.button("⏭ Skip Rest", use_container_width=True, key="skip_rest"):
+                    st.session_state.rest_time = 0
+                    st.session_state.current_step += 1
+                    st.session_state.rest_paused = False
+                    st.rerun()
         
-            st.rerun()
+            if not st.session_state.get("rest_paused", False):
+                time.sleep(1)
+                st.session_state.rest_time -= 1
+        
+                if st.session_state.rest_time <= 0:
+                    st.session_state.current_step += 1
+                    st.session_state.rest_time = 0
+                    st.session_state.rest_paused = False
+        
+                st.rerun()
+        
+            else:
+                if st.button("▶️ Resume Rest", use_container_width=True, key="resume_rest"):
+                    st.session_state.rest_paused = False
+                    st.rerun()
 
     
         else:
