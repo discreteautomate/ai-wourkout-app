@@ -206,6 +206,11 @@ Rules:
 
         return data
 
+    except json.JSONDecodeError:
+            return {
+                "error": "Invalid JSON from AI",
+                "raw_output": output
+            }
 
 # 👇 MUST start at far left (NO indentation)
 def swap_exercise(current_exercise, current_details, goal, experience, equipment, limitations, exclude):
