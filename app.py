@@ -352,10 +352,8 @@ elif st.session_state.screen == "workout":
             unsafe_allow_html=True
         )
 
-st.progress((current + 1) / len(steps)))
+        st.progress((current + 1) / len(steps))
 
-        exercise = item.get("exercise", "Unknown exercise")
-        details = item.get("details", "")
         image_url = item.get("image")
 
         if image_url:
