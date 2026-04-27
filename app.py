@@ -3,7 +3,7 @@ import csv
 import os
 import json
 from datetime import datetime
-from ai_workout import generate_workout
+from ai_workout import generate_workout, swap_exercise
 
 if "rest_time" not in st.session_state:
     st.session_state.rest_time = 0
@@ -364,7 +364,20 @@ elif st.session_state.screen == "workout":
             st.image(image_url, use_container_width=True)
 
         if st.button("🔁 Swap Exercise", use_container_width=True, key=f"swap_{current}"):
-            st.info("Looking for an alternative exercise..."))
+            with st.spinner("Finding a better alternative..."):
+                new_item = swap_exercise(
+                    item.get("exercise", ""),
+                    item.get("details", ""),
+                    st.session_state.user_inputs.get("goal", ""),
+                    st.session_state.user_inputs.get("experience", ""),
+                    st.session_state.user_inputs.get("equipment", ""),
+                    st.session_state.user_inputs.get("limitations", ""),
+                    st.session_state.user_inputs.get("exclude", [])
+                )
+        
+            steps[current] = new_item
+            st.success("Exercise swapped.")
+            st.rerun()
 
         # 🔥 REST MODE
         if st.session_state.rest_time > 0:
