@@ -302,12 +302,16 @@ if st.session_state.screen == "form":
 
 elif st.session_state.screen == "results":
     
-    st.markdown("## Your Workout Plan 💪")
+    st.markdown("## Your workout is ready 💪")
+    st.caption("Start the guided workout or review the full plan below.")
 
-    if st.button("▶️ Start Workout"):
+    if st.button("▶️ Start Workout", use_container_width=True):
         st.session_state.screen = "workout"
         st.session_state.current_step = 0
+        st.session_state.rest_time = 0
         st.rerun()
+
+    st.divider()
 
 elif st.session_state.screen == "workout":
 
