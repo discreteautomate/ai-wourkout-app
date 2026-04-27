@@ -331,7 +331,8 @@ elif st.session_state.screen == "workout":
     current = st.session_state.current_step
 
     if current < len(steps):
-        item = steps[current]
+        step = steps[current]
+        item = step["item"]
 
         st.markdown(
             f"""
