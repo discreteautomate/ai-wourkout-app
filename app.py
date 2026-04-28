@@ -369,17 +369,17 @@ elif st.session_state.screen == "results":
                     st.success("Workout complete!")
     
         # 👇 LIST BELOW
-        st.markdown("### Today's exercises")
-    
+        st.markdown("### Today's workout")
+
         for index, item in enumerate(exercises):
             name = item.get("exercise", "Exercise")
-    
+        
             if index < current_step:
-                st.write(f"✅ {name}")
+                st.markdown(f"✅ {name}")
             elif index == current_step:
-                st.write(f"▶️ **{name}**")
+                st.markdown(f"🔥 **{name.upper()} — IN PROGRESS**")
             else:
-                st.write(f"⬜ {name}")
+                st.markdown(f"⬜ {name}")
 
     st.divider()
 
