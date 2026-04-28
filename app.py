@@ -309,11 +309,74 @@ elif st.session_state.screen == "results":
     st.markdown("## Your workout is ready 💪")
     st.caption("Start the guided workout or review the full plan below.")
 
-    if st.button("▶️ Start Workout", use_container_width=True):
-        st.session_state.screen = "workout"
+    if st.session_state.workout_result:
+
+    st.write("Workout generated!")  # your existing code
+
+    if st.button("▶️ Start Workout"):
+        st.session_state.workout_started = True
+        st.session_state.current_day = 1
         st.session_state.current_step = 0
-        st.session_state.rest_time = 0
         st.rerun()
+
+
+# 👇 THIS IS YOUR NEW SCREEN
+if st.session_state.get("workout_started"):
+
+    current_day = st.session_state.current_day
+    current_step = st.session_state.current_step
+
+    day_key = f"day{current_day}"
+    day_data = st.session_state.workout_result[day_key]
+
+    exercises = day_data.get("main_workout", [])
+
+    current_exercise = exercises[current_step]
+
+    exercise_name = current_exercise.get("exercise", "Exercise")
+    exercise_details = current_exercise.get("details", "")
+    exercise_image = current_exercise.get("image", None)
+
+    st.caption(f"Exercise {current_step + 1} of {len(exercises)}")
+    st.markdown(f"## {exercise_name}")
+
+    if exercise_image:
+        st.image(exercise_image, use_container_width=True)
+
+    st.write(exercise_details)
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        if st.button("← Previous", use_container_width=True):
+            if current_step > 0:
+                st.session_state.current_step -= 1
+                st.rerun()
+
+    with col2:
+        if st.button("🔄 Swap", use_container_width=True):
+            st.warning("Swap coming soon")
+
+    with col3:
+        if st.button("Next →", use_container_width=True):
+            if current_step < len(exercises) - 1:
+                st.session_state.current_step += 1
+                st.rerun()
+            else:
+                st.success("Workout complete!")
+
+    # 👇 LIST BELOW
+    st.markdown("### Today's exercises")
+
+    for index, item in enumerate(exercises):
+        name = item.get("exercise", "Exercise")
+
+        if index < current_step:
+            st.write(f"✅ {name}")
+        elif index == current_step:
+            st.write(f"▶️ **{name}**")
+        else:
+            st.write(f"⬜ {name}"))
 
     st.divider()
 
