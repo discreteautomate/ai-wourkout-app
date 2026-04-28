@@ -376,7 +376,7 @@ if st.session_state.get("workout_started"):
         elif index == current_step:
             st.write(f"▶️ **{name}**")
         else:
-            st.write(f"⬜ {name}"))
+            st.write(f"⬜ {name}")
 
     st.divider()
 
