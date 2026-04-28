@@ -322,7 +322,7 @@ elif st.session_state.screen == "results":
     
     # 👇 THIS IS YOUR NEW SCREEN
     if st.session_state.get("workout_started"):
-    
+
         current_day = st.session_state.current_day
         current_step = st.session_state.current_step
     
@@ -337,14 +337,17 @@ elif st.session_state.screen == "results":
         exercise_details = current_exercise.get("details", "")
         exercise_image = current_exercise.get("image", None)
     
-        st.caption(f"Exercise {current_step + 1} of {len(exercises)}")
-        st.markdown(f"## {exercise_name}")
-    
+        # BIG IMAGE
         if exercise_image:
             st.image(exercise_image, use_container_width=True)
     
-        st.write(exercise_details)
+        # NAME
+        st.markdown(f"## {exercise_name}")
     
+        # SETS / TIME ONLY
+        st.markdown(f"### {exercise_details}")
+    
+        # BUTTONS
         col1, col2, col3 = st.columns(3)
     
         with col1:
@@ -355,7 +358,7 @@ elif st.session_state.screen == "results":
     
         with col2:
             if st.button("🔄 Swap", use_container_width=True):
-                st.warning("Swap coming soon")
+                st.warning("Swap exercise coming soon.")
     
         with col3:
             if st.button("Next →", use_container_width=True):
