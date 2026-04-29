@@ -338,15 +338,12 @@ elif st.session_state.screen == "results":
         exercise_image = current_exercise.get("image", None)
     
         # BIG IMAGE
-        if exercise_image:
-            st.image(exercise_image, use_container_width=True)
-    
-        # NAME
         st.markdown(f"## {exercise_name}")
-    
+        
+        if exercise_image:
+            st.image(exercise_image, width=300)
         # SETS / TIME ONLY
         st.markdown(f"### {exercise_details}")
-    
         # BUTTONS
         col1, col2, col3 = st.columns(3)
     
@@ -369,7 +366,7 @@ elif st.session_state.screen == "results":
                     st.success("Workout complete!")
     
         # 👇 LIST BELOW
-        st.markdown("### Today's workout")
+        st.markdown("### Today")
 
         for index, item in enumerate(exercises):
             name = item.get("exercise", "Exercise")
@@ -377,7 +374,7 @@ elif st.session_state.screen == "results":
             if index < current_step:
                 st.markdown(f"✅ {name}")
             elif index == current_step:
-                st.markdown(f"🔥 **{name.upper()} — IN PROGRESS**")
+                st.markdown(f"🔥 **{name.upper()}**")
             else:
                 st.markdown(f"⬜ {name}")
 
