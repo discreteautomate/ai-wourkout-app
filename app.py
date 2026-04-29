@@ -345,20 +345,20 @@ elif st.session_state.screen == "results":
         # SETS / TIME ONLY
         st.markdown(f"### {exercise_details}")
         # BUTTONS
-        col1, col2, col3 = st.columns(3)
-    
+        col1, col2, col3 = st.columns([1,1,1,2])
+
         with col1:
-            if st.button("← Previous", use_container_width=True):
+            if st.button("←", key="prev_btn"):
                 if current_step > 0:
                     st.session_state.current_step -= 1
                     st.rerun()
-    
+        
         with col2:
-            if st.button("🔄 Swap", use_container_width=True):
-                st.warning("Swap exercise coming soon.")
-    
+            if st.button("🔄", key="swap_btn"):
+                st.warning("Swap coming soon")
+        
         with col3:
-            if st.button("Next →", use_container_width=True):
+            if st.button("→", key="next_btn"):
                 if current_step < len(exercises) - 1:
                     st.session_state.current_step += 1
                     st.rerun()
