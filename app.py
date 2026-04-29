@@ -345,7 +345,7 @@ elif st.session_state.screen == "results":
         # SETS / TIME ONLY
         st.markdown(f"### {exercise_details}")
         # BUTTONS
-        col1, col2, col3 = st.columns([1,1,1,2])
+        col1, col2, col3 = st.columns([1,1,1])
 
         with col1:
             if st.button("←", key="prev_btn"):
